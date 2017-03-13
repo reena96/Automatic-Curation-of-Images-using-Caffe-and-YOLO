@@ -68,6 +68,25 @@
      -->
       </div>
 
+       <form role="form" action="classify_url" method="get">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" name="imageurl" id="imageurl" placeholder="Provide an image URL">
+            <span class="input-group-btn">
+              <input class="btn btn-primary" value="Classify URL" type="submit" id="classifyurl"></input>
+            </span>
+          </div><!-- /input-group -->
+        </div>
+      </form>
+
+      <form id="formupload" class="form-inline" role="form" action="classify_upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="imagefile">Or upload an image:</label>
+          <input type="file" name="imagefile" id="imagefile">
+        </div>
+        <!--<input type="submit" class="btn btn-primary" value="Classify File" id="classifyfile"></input>-->
+      </form>
+      
       <div>
         <h2>Classification</h2>
         <!--<a href="/classify_url?imageurl=http%3A%2F%2Fi.telegraph.co.uk%2Fmultimedia%2Farchive%2F02351%2Fcross-eyed-cat_2351472k.jpg">Click for a Quick Example</a> -->
@@ -79,7 +98,8 @@
       <div class="alert alert-danger">{{ result[1] }} Did you provide a valid URL or a valid image file? </div>
       {% else %}
       <div class="media">
-        <a class="pull-left" href="#"><img class="media-object" width="192" height="192" src={{ imagesrc }}></a>
+      <!--  <a class="pull-top" href="#"><img class="media-object" width="192" height="192" src={{ imagesrc }}></a> -->
+         <a class="pull-right" href="#"><img class="img-responsive" src={{ predsrc }}></a>
         <div class="media-body">
           <div class="bs-example bs-example-tabs">
             <ul id="myTab" class="nav nav-tabs">
@@ -116,40 +136,12 @@
 
         </div>
       </div>
-      <p> CNN took {{ result[3] }} seconds. </p>
+      <h3> CNN took {{ result[3] }} seconds. </h3>
       {% endif %}
       <hr>
       {% endif %}
-
-      <form role="form" action="classify_url" method="get">
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control" name="imageurl" id="imageurl" placeholder="Provide an image URL">
-            <span class="input-group-btn">
-              <input class="btn btn-primary" value="Classify URL" type="submit" id="classifyurl"></input>
-            </span>
-          </div><!-- /input-group -->
-        </div>
-      </form>
-
-      <form id="formupload" class="form-inline" role="form" action="classify_upload" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="imagefile">Or upload an image:</label>
-          <input type="file" name="imagefile" id="imagefile">
-        </div>
-        <!--<input type="submit" class="btn btn-primary" value="Classify File" id="classifyfile"></input>-->
-      </form>
-    </div>
-
+    
     <hr>
-	
-	<div class="container">
-         {% if has_result %}
-		      
-                        <a href="#"><img class="img-responsive" src={{ predsrc }}></a>
-
-	  {% endif %}
-	 </div>
 	 
 	
     <div id="footer">
